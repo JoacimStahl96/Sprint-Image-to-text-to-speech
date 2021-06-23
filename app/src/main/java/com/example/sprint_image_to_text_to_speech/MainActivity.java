@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -73,22 +74,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-           //     if (status == TextToSpeech.SUCCESS) {
-                    try {
-                        textToSpeech.setLanguage(new Locale("sv", "SE"));
-                     //   textToSpeech.setLanguage(Locale.ENGLISH);
-                    } catch (Exception e) {
-                        Log.d("speak", "onInit: " + TextToSpeech.ERROR);
-                        Toast.makeText(MainActivity.this, "" + TextToSpeech.ERROR, Toast.LENGTH_SHORT).show();
-                    }
-                }
-         //   }
-        });
         btnReadTextFromImage.setOnClickListener(this::readTextFromImage);
     }
 
@@ -161,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void readTextFromImage(View view) {
         String toRead = tvTextFromImage.getText().toString();
+        Log.d("toread", "readTextFromImage: " + toRead);
+        String testString = "hejsan hoppsan hejsan hoppsan hejsan hoppsan hejsan hoppsan hejsan hoppsan hejsan hoppsan hejsan hoppsan ";
 
         textToSpeech.speak(toRead, TextToSpeech.QUEUE_FLUSH, null);
     }
@@ -168,7 +155,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d("TAG", "onStop: ");
         textToSpeech.stop();
         textToSpeech.shutdown();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+
+                try {
+                    textToSpeech.setLanguage(Locale.GERMAN);
+                    Log.d("trySpeak", "onInit: " + status);
+                    //   textToSpeech.setLanguage(Locale.ENGLISH);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d("speak", "onInit: TextToSpeech.ERROR" + TextToSpeech.ERROR);
+                }
+                Log.d("speak", "onInit: language is available: " + textToSpeech.isLanguageAvailable(Locale.getDefault()));
+            }
+
+        });
+    }
+
 }
