@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sprint-Image-to-text-to-speech</string>
+    <string name="take_picture_btn">Choose image</string>
+    <string name="read_text_from_image">Read text from image</string>
 </resources>

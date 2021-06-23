@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "592628716775",
+    "project_id": "sprint-image-to-text-to-speech",
+    "storage_bucket": "sprint-image-to-text-to-speech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592628716775:android:9db5d8207df748633dbe42",
+        "android_client_info": {
+          "package_name": "com.example.sprint_image_to_text_to_speech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592628716775-hcpg50ooueu6c3vtcacdflog0p1e8c4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpOxfFM2rVnZkD3LfbVaV31qq7EFtzDz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592628716775-hcpg50ooueu6c3vtcacdflog0p1e8c4g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
