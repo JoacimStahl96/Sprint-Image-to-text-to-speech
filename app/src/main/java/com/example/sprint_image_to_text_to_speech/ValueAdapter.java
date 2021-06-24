@@ -19,17 +19,14 @@ public class ValueAdapter extends RecyclerView.Adapter<ValueAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            valueText = itemView.findViewById(R.id.savedtextInDb);
         }
 
         public TextView getValueText() {
             return valueText;
         }
-
-        public void setValueText(TextView valueText) {
-            this.valueText = valueText;
-        }
     }
-
 
     public ValueAdapter(ArrayList<TextFromImageEntity> localTextFromImageBean) {
         this.localTextFromImageBean = localTextFromImageBean;

@@ -9,21 +9,20 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="417dp"
+        android:layout_width="match_parent"
         android:layout_height="314dp"
         app:layout_constraintBottom_toTopOf="@+id/useNewImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005">
+        app:layout_constraintVertical_bias="0.155">
 
         <TextView
             android:id="@+id/tvTextFromImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:text="hejsan"
             app:layout_constraintBottom_toTopOf="@+id/useNewImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -32,7 +31,8 @@
     </ScrollView>
 
     <ScrollView
-        android:layout_width="413dp"
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
         android:layout_height="272dp"
         app:layout_constraintBottom_toTopOf="@+id/useNewImage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
         <ImageView
             android:id="@+id/imageId"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="top"
             app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="@+id/scrollView2"
@@ -54,7 +54,7 @@
 
     <Button
         android:id="@+id/useNewImage"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="useImage"
         android:text="@string/take_picture_btn"
@@ -63,18 +63,30 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.912" />
+        app:layout_constraintVertical_bias="0.998" />
 
     <Button
         android:id="@+id/btnReadTextFromImage"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="readTextFromImage"
         android:text="@string/read_text_from_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/useNewImage"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3"
+        app:layout_constraintVertical_bias="0.958" />
+
+    <Button
+        android:id="@+id/btnGoToDb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GoToDbMainActivity"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

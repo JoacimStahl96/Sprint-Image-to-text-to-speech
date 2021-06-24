@@ -6,7 +6,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -38,17 +37,20 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView ivImageId;
-    TextView tvTextFromImage;
-    Button btnChooseImage, btnReadTextFromImage;
+    private ImageView ivImageId;
+    private TextView tvTextFromImage;
+    private Button btnChooseImage, btnReadTextFromImage, btnGoToDbActivity;
 
     private static final int STORAGE_PERMISSION_CODE = 113;
-    ActivityResultLauncher<Intent> intentActivityResultLauncher;
+    private ActivityResultLauncher<Intent> intentActivityResultLauncher;
 
-    InputImage inputImage;
-    TextRecognizer textRecognizer;
+    private InputImage inputImage;
+    private TextRecognizer textRecognizer;
 
-    TextToSpeech textToSpeech;
+    private TextToSpeech textToSpeech;
+
+    private DBSetupHelper dbSetupHelper;
+    private String valuesToDB = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         tvTextFromImage = findViewById(R.id.tvTextFromImage);
         btnChooseImage = findViewById(R.id.useNewImage);
         btnReadTextFromImage = findViewById(R.id.btnReadTextFromImage);
+        btnGoToDbActivity = findViewById(R.id.btnGoToDb);
+
 
         textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
 
@@ -74,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnChooseImage.setOnClickListener(this::useImage);
         btnReadTextFromImage.setOnClickListener(this::readTextFromImage);
+        btnGoToDbActivity.setOnClickListener(this::GoToDbActivity);
     }
 
     private void convertImageToText(Uri imageUri) {
@@ -146,10 +152,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void readTextFromImage(View view) {
         String toRead = tvTextFromImage.getText().toString();
-        Log.d("toread", "readTextFromImage: " + toRead);
-        String testString = "hejsan hoppsan hejsan hoppsan hejsan hoppsan hejsan hoppsan hejsan hoppsan hejsan hoppsan hejsan hoppsan ";
+        Log.d("toRead", "readTextFromImage: " + toRead);
 
+        // kör ett simpelt sparande, känner att fler knappar kanske förstör mer än det gör nytta
+
+        valuesToDB = toRead;
         textToSpeech.speak(toRead, TextToSpeech.QUEUE_FLUSH, null);
+        dbSetupHelper.addTextFromImages(toRead);
     }
 
     @Override
@@ -163,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        dbSetupHelper = new DBSetupHelper(MainActivity.this);
 
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -180,6 +191,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    private void GoToDbActivity(View view) {
+        Intent intent = new Intent(this, DbActivity.class);
+        startActivity(intent);
     }
 
 }
