@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private TextToSpeech textToSpeech;
 
     private DBSetupHelper dbSetupHelper;
-    private String valuesToDB = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         btnChooseImage = findViewById(R.id.useNewImage);
         btnReadTextFromImage = findViewById(R.id.btnReadTextFromImage);
         btnGoToDbActivity = findViewById(R.id.btnGoToDb);
-
 
         textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
 
@@ -156,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
         // kör ett simpelt sparande, känner att fler knappar kanske förstör mer än det gör nytta
 
-        valuesToDB = toRead;
         textToSpeech.speak(toRead, TextToSpeech.QUEUE_FLUSH, null);
         dbSetupHelper.addTextFromImages(toRead);
     }
@@ -195,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void GoToDbActivity(View view) {
         Intent intent = new Intent(this, DbActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
