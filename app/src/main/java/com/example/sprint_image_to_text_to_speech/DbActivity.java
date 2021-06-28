@@ -21,8 +21,7 @@ public class DbActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ValueAdapter valueAdapter;
     private Button btnGoBackToMainActivity, btnDeleteData, btnPlaySpeechText;
-    private TextView tvSavedTextInDb;
-
+    private ArrayList<TextFromImageEntity> dbValues = new ArrayList<TextFromImageEntity>();
     private TextToSpeech dbTextToSpeech;
 
     @Override
@@ -36,13 +35,12 @@ public class DbActivity extends AppCompatActivity {
         btnGoBackToMainActivity = findViewById(R.id.btnbackToMainActivity);
         btnDeleteData = findViewById(R.id.btnDeleteDataDbActivity);
         btnPlaySpeechText = findViewById(R.id.dbActivityPlayButton);
-        tvSavedTextInDb = findViewById(R.id.savedtextInDb);
+        TextView tvSavedTextInDb = findViewById(R.id.savedtextInDb);
 
         btnGoBackToMainActivity.setOnClickListener(this::goBackToMainActivity);
         btnDeleteData.setOnClickListener(this::deleteDataFromDB);
 
 
-        ArrayList<TextFromImageEntity> dbValues = new ArrayList<TextFromImageEntity>();
         dbValues = dbSetupHelper.getValues(dbValues);
 
         recyclerView = findViewById(R.id.rvDbValuesDbActivity);
@@ -53,17 +51,13 @@ public class DbActivity extends AppCompatActivity {
 
         activateTTS();
 
-    //    btnPlaySpeechText.setOnClickListener(this::playSavedText);
+        valueAdapter.setOnItemClickListener(new ValueAdapter.OnClickListener() {
+            @Override
+            public void playDbText(int position) {
+                dbTextToSpeech.speak(dbValues.get(position).getTextFromImage(), TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
     }
-
-
-    private void playSavedText(View view) {
-
-        String readFromDatabase = tvSavedTextInDb.getText().toString();
-        dbTextToSpeech.speak(readFromDatabase, TextToSpeech.QUEUE_FLUSH, null );
-    }
-
-
 
     private void goBackToMainActivity(View view) {
         Intent intent = new Intent(this, MainActivity.class);
@@ -98,7 +92,7 @@ public class DbActivity extends AppCompatActivity {
                 try {
                     dbTextToSpeech.setLanguage(Locale.GERMAN);
                     Log.d("trySpeak", "onInit: DbActivity " + status);
-                    //   textToSpeech.setLanguage(Locale.ENGLISH);
+                    //   dbTextToSpeech.setLanguage(Locale.ENGLISH);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("speak", "onInit: DbActivity: TextToSpeech.ERROR" + TextToSpeech.ERROR);

@@ -172,6 +172,16 @@ public class MainActivity extends AppCompatActivity {
 
         dbSetupHelper = new DBSetupHelper(MainActivity.this);
 
+        startTTS();
+    }
+
+    private void GoToDbActivity(View view) {
+        Intent intent = new Intent(this, DbActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private void startTTS() {
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -188,12 +198,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-    }
-
-    private void GoToDbActivity(View view) {
-        Intent intent = new Intent(this, DbActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
     }
 
 }
