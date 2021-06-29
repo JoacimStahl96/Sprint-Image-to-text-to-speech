@@ -153,9 +153,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d("toRead", "readTextFromImage: " + toRead);
 
         // kör ett simpelt sparande, känner att fler knappar kanske förstör mer än det gör nytta
-
-        textToSpeech.speak(toRead, TextToSpeech.QUEUE_FLUSH, null);
-        dbSetupHelper.addTextFromImages(toRead);
+        if (!toRead.isEmpty()){
+            textToSpeech.speak(toRead, TextToSpeech.QUEUE_FLUSH, null);
+            dbSetupHelper.addTextFromImages(toRead);
+        } else {
+            Toast.makeText(this, "Please choose an image with text in it", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void GoToDbActivity(View view) {
         Intent intent = new Intent(this, DbActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 

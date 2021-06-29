@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DbActivity">
+    tools:context=".DbActivity"
+    android:background="@drawable/gradients"
+    >
 
     <Button
         android:id="@+id/btnDeleteDataDbActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/delete_all_records"
+        android:textColor="@color/purple_700"
+        style="?attr/materialButtonOutlinedStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.949"
@@ -23,6 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_back_db_activity"
+        android:textColor="@color/purple_700"
+        style="?attr/materialButtonOutlinedStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnDeleteDataDbActivity"
         app:layout_constraintHorizontal_bias="0.204"
@@ -34,7 +40,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tvDatabaseDbActivity"
+        android:text=""
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnDeleteDataDbActivity"
@@ -44,19 +50,19 @@
         app:layout_constraintVertical_bias="0.039" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="632dp"
+        android:layout_width="409dp"
+        android:layout_height="689dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.955">
+        app:layout_constraintVertical_bias="0.555">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDbValuesDbActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"/>
+            android:layout_gravity="top" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

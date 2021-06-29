@@ -5,7 +5,9 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/gradients"
+    >
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -32,8 +34,8 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="272dp"
+        android:layout_width="412dp"
+        android:layout_height="313dp"
         app:layout_constraintBottom_toTopOf="@+id/useNewImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -58,12 +60,14 @@
         android:layout_height="wrap_content"
         android:onClick="useImage"
         android:text="@string/take_picture_btn"
+        android:textColor="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998" />
+        app:layout_constraintVertical_bias="0.998"
+        style="?attr/materialButtonOutlinedStyle"/>
 
     <Button
         android:id="@+id/btnReadTextFromImage"
@@ -71,22 +75,28 @@
         android:layout_height="wrap_content"
         android:onClick="readTextFromImage"
         android:text="@string/read_text_from_image"
+        android:textColor="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3"
-        app:layout_constraintVertical_bias="0.958" />
+        app:layout_constraintVertical_bias="0.958"
+        style="?attr/materialButtonOutlinedStyle"
+        />
 
     <Button
         android:id="@+id/btnGoToDb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/GoToDbMainActivity"
+        android:textColor="@color/purple_700"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        style="?attr/materialButtonOutlinedStyle"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

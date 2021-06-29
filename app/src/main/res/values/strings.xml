@@ -4,6 +4,6 @@
     <string name="read_text_from_image">Read text from image</string>
     <string name="delete_all_records">Delete data</string>
     <string name="btn_back_db_activity">Back</string>
-    <string name="tvDatabaseDbActivity">Database</string>
-    <string name="GoToDbMainActivity">Database</string>
+    <string name="tvDatabaseDbActivity">Saved texts</string>
+    <string name="GoToDbMainActivity">Go to saved texts</string>
 </resources>
