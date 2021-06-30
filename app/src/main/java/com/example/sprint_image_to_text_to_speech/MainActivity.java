@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
                 ivImageId.setImageURI(imageUri);
             }
             // hämta texten från inputImage
-            Task<Text> result = textRecognizer.process(inputImage).addOnSuccessListener(new OnSuccessListener<Text>() {
+            Task<Text> result = textRecognizer.process(inputImage);
+            result.addOnSuccessListener(new OnSuccessListener<Text>() {
                 @Override
                 public void onSuccess(@NonNull Text text) {
                     tvTextFromImage.setText(text.getText());
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+  // get image
     public void useImage(View view) {
 
         Intent intent = new Intent();
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("toRead", "readTextFromImage: " + toRead);
 
         // kör ett simpelt sparande, känner att fler knappar kanske förstör mer än det gör nytta
-        if (!toRead.isEmpty()){
+        if (!toRead.isEmpty()) {
             textToSpeech.speak(toRead, TextToSpeech.QUEUE_FLUSH, null);
             dbSetupHelper.addTextFromImages(toRead);
         } else {
@@ -172,16 +173,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         dbSetupHelper = new DBSetupHelper(MainActivity.this);
-
         startTTS();
-    }
-
-    private void GoToDbActivity(View view) {
-        Intent intent = new Intent(this, DbActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
     }
 
     private void startTTS() {
@@ -202,5 +195,9 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-
+    private void GoToDbActivity(View view) {
+        Intent intent = new Intent(this, DbActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
 }
