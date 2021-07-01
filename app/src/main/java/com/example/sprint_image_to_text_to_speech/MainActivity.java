@@ -197,7 +197,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void GoToDbActivity(View view) {
         Intent intent = new Intent(this, DbActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+
     }
 }
